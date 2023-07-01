@@ -1,7 +1,7 @@
 from behave import *
 from selenium import webdriver
 
-# python -m behave features\myfeature.feature
+# python -m behave features\test_drive.feature
 
 @given('launch chrome browser')
 def launchBrowser(context):
@@ -11,8 +11,6 @@ def launchBrowser(context):
 @when('open google')
 def openGoogle(context):
     context.driver.get("https://www.google.com/")
-
-
 
 @then('close browser')
 def closeBrowser(context):
