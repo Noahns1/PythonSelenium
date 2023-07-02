@@ -1,6 +1,9 @@
+from selenium.webdriver.support import expected_conditions as EC
 from behave import *
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import wait
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 @given('User opens up Chrome')
@@ -62,61 +65,97 @@ def step_impl(context):
 
 # Below scripts are for scenario: incorrectly attempt to create an account
 
-@when(u'User clicks Account & Lists')
+@when('User clicks Account & Lists')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: When User clicks Account & Lists')
+    context.driver.find_element(By.ID, 'nav-link-accountList').click()
 
 
-@then(u'User is on Sign in page')
+@then('User is on Sign in page')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: Then User is on Sign in page')
+    signin = context.driver.find_element(By.XPATH, '//*[@id="authportal-main-section"]/div[2]/div[2]/div[1]/form/div/div/div/h1')
+    actual_signin_title = signin.text
+    expected_signin_title = "Sign in"
+    assert actual_signin_title == expected_signin_title, f'Actual = "{actual_signin_title}",' \
+                                                     f' Expected = "{expected_signin_title}"'
 
 
-@when(u'User clicks Create your Amazon account')
+@when('User clicks Create your Amazon account')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: When User clicks Create your Amazon account')
+    context.driver.find_element(By.ID, 'createAccountSubmit').click()
 
 
-@then(u'User is on Create account page')
+@then('User is on Create account page')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: Then User is on Create account page')
+    create_account = context.driver.find_element(By.XPATH, '//*[@id="ap_register_form"]/div/div/h1')
+    actual_create_account = create_account.text
+    expected_create_account = "Create account"
+    assert actual_create_account == expected_create_account, f'Actual = "{actual_create_account}",' \
+                                                         f' Expected = "{expected_create_account}"'
 
 
-@then(u'User clicks continue')
+@then('User clicks continue')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: Then User clicks continue')
+    context.driver.find_element(By.ID, 'continue').click()
 
 
-@then(u'Verifies error messages from incorrect entries')
+@then('Verifies error messages from incorrect entries')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: Then Verifies error messages from incorrect entries')
+    for row in context.table:
+        field_id = row['field']
+        value = row['value']
+
+        field_text = context.driver.find_element(By.ID, field_id)
+        actual_field_text = field_text.text
+        expected_field_text = value
+        assert actual_field_text == expected_field_text
 
 
-@when(u'User enters invalid email')
+@when('User enters invalid email')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: When User enters invalid email')
+    context.driver.find_element(By.ID, 'ap_email').send_keys('NotAnEmail')
+    context.driver.find_element(By.ID, 'continue').click()
 
 
-@then(u'Verifies error message for email')
+
+@then('Verifies error message for email')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: Then Verifies error message for email')
+    #wait = WebDriverWait(context.driver, 100)
+    email_error = context.driver.find_element(By.ID, 'auth-email-invalid-claim-alert')
+    actual_email_error = email_error.text
+    expected_email_error = 'Wrong or Invalid email address or mobile phone number. ' \
+                           'Please correct and try again.'
+    assert actual_email_error == expected_email_error, f'Actual = "{actual_email_error}",' \
+                                                             f' Expected = "{expected_email_error}"'
 
 
-@when(u'User enter mismatching passwords')
+@when('User enter mismatching passwords')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: When User enter mismatching passwords')
+    context.driver.find_element(By.ID, 'ap_password').send_keys('password1')
+    context.driver.find_element(By.ID, 'ap_password_check').send_keys('password2')
+    context.driver.find_element(By.ID, 'continue').click()
 
 
-@then(u'Verifies error message for mismatching password')
+
+@then('Verifies error message for mismatching password')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: Then Verifies error message for mismatching password')
+    password_error = context.driver.find_element(By.ID, 'auth-password-mismatch-alert')
+    actual_password_error = password_error.text
+    expected_password_error = 'Passwords must match'
+    assert actual_password_error == expected_password_error, f'Actual = "{actual_password_error}",' \
+                                                       f' Expected = "{expected_password_error}"'
 
 
-@when(u'User enters an improper password')
+@when('User enters an improper password')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: When User enters an improper password')
+    context.driver.find_element(By.ID, 'ap_password').clear()
+    context.driver.find_element(By.ID, 'ap_password').send_keys('badpw')
+    context.driver.find_element(By.ID, 'continue').click()
 
 
-@then(u'Verifies error message for improper password')
+@then('Verifies error message for improper password')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: Then Verifies error message for improper password')
+    password_invalid = context.driver.find_element(By.ID, 'auth-password-invalid-password-alert')
+    actual_password_invalid = password_invalid.text
+    expected_password_invalid = 'Minimum 6 characters required'
+    assert actual_password_invalid == expected_password_invalid, f'Actual = "{actual_password_invalid}",' \
+                                                             f' Expected = "{expected_password_invalid}"'

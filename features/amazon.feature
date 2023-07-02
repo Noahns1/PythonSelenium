@@ -23,6 +23,10 @@ Feature: Amazon Basics
     Then User is on Create account page
     And User clicks continue
     Then Verifies error messages from incorrect entries
+      | field                           | value                                   |
+      | auth-customerName-missing-alert | Enter your name                         |
+      | auth-email-missing-alert        | Enter your email or mobile phone number |
+      | auth-password-missing-alert     | Minimum 6 characters required           |
     When User enters invalid email
     Then Verifies error message for email
     When User enter mismatching passwords
