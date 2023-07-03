@@ -26,8 +26,9 @@ I developed this project to showcase not only my proficiency in test case creati
 
 ---
 ### Dependencies
-- Selenium webdriver
+- Selenium Webdriver
 - Behave
+- Chrome Driver
 
 ---
 ### How To Use This Project
