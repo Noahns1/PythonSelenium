@@ -16,13 +16,13 @@ Languages and Tools:
 
 ---
 ### What Is My Project?
-This project is part of a twin set of projects that achieve identical functionality. In this project, Python, Selenium, and Behave are utilized for Behavior-driven development (BDD) to automate test cases on Amazon. Its twin project achieves the same test cases but implements Java, Selenium, and Cucumber.
+This project is part of a twin set of projects that achieve identical functionality. In this project, Python, Selenium, and Behave are utilized for Behavior-driven development (BDD) to automate test cases on Amazon. Its twin project achieves the same test cases but implements Java, Maven, Selenium, TestNG, and Cucumber.
 
 [Twin Project](https://github.com/Noahns1/JavaSelenium)
 
 ---
 ### Why Is This Project Useful?
-I developed this project to showcase not only my proficiency in test case creation and automation but also to demonstrate my adeptness in both Python and Java. Regardless of the language used, the project accomplishes the same functionality, highlighting my versatility and understanding of different programming languages.
+I developed this project to showcase not only my proficiency in test case creation and automation but also demonstrate my adeptness in both Python and Java. Regardless of the language used, the project accomplishes the same functionality, highlighting my versatility and understanding of different programming languages.
 
 ---
 ### Dependencies
@@ -32,7 +32,7 @@ I developed this project to showcase not only my proficiency in test case creati
 ---
 ### How To Use This Project
 
-1. Update the Chrome webdrive location in "context.driver=webdriver.Chrome()"
+1. Update the Chrome webdriver location in "context.driver=webdriver.Chrome()"
 2. Ensure all dependencies are downloaded and installed
 3. To run a feature file run this command in project terminal "python -m behave folder\file.type"
     - Example: python -m behave features\amazon.feature 
