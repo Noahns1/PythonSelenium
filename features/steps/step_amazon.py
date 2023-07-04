@@ -162,25 +162,25 @@ def step_impl(context):
 
 # Below scripts are for scenario: Amazon - Validate text on item
 
-@when(u'User searches for Python Selenium book')
+@when('User searches for Python Selenium book')
 def step_impl(context):
     context.driver.find_element(By.ID, "twotabsearchtextbox").send_keys("Python Selenium Book")
     context.driver.find_element(By.ID, "nav-search-submit-button").click()
 
 
-@when(u'User selects a Python Selenium book')
+@when('User selects a Python Selenium book')
 def step_impl(context):
     context.driver.find_element(By.LINK_TEXT, "Test-Driven Development with Python: "
                                               "Obey the Testing Goat: "
                                               "Using Django, Selenium, and JavaScript").click()
 
 
-@when(u'Clicks on Read more')
+@when('Clicks on Read more')
 def step_impl(context):
     context.driver.find_element(By.LINK_TEXT, "Read more").click()
 
 
-@then(u'User validates Title and Author on item page')
+@then('User validates Title and Author on item page')
 def step_impl(context):
     for row in context.table:
         field_id = row['field']
@@ -192,7 +192,7 @@ def step_impl(context):
         assert actual_field_text == expected_field_text, f'Actual = "{actual_field_text}",' \
                                                              f' Expected = "{expected_field_text}"'
 
-@then(u'User validates book description')
+@then('User validates book description')
 def step_impl(context):
     for row in context.table:
         field_id = row['xpath']
@@ -204,7 +204,7 @@ def step_impl(context):
         assert actual_field_text == expected_field_text, f'Actual = "{actual_field_text}",' \
                                                          f' Expected = "{expected_field_text}"'
 
-@then(u'User validates preface')
+@then('User validates preface')
 def step_impl(context):
     context.driver.find_element(By.XPATH, "//*[contains(text(), 'From the Preface')]")
 
