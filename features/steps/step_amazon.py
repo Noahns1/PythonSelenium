@@ -159,3 +159,53 @@ def step_impl(context):
     expected_password_invalid = 'Minimum 6 characters required'
     assert actual_password_invalid == expected_password_invalid, f'Actual = "{actual_password_invalid}",' \
                                                              f' Expected = "{expected_password_invalid}"'
+
+# Below scripts are for scenario: Amazon - Validate text on item
+
+@when(u'User searches for Python Selenium book')
+def step_impl(context):
+    context.driver.find_element(By.ID, "twotabsearchtextbox").send_keys("Python Selenium Book")
+    context.driver.find_element(By.ID, "nav-search-submit-button").click()
+
+
+@when(u'User selects a Python Selenium book')
+def step_impl(context):
+    context.driver.find_element(By.LINK_TEXT, "Test-Driven Development with Python: "
+                                              "Obey the Testing Goat: "
+                                              "Using Django, Selenium, and JavaScript").click()
+
+
+@when(u'Clicks on Read more')
+def step_impl(context):
+    context.driver.find_element(By.LINK_TEXT, "Read more").click()
+
+
+@then(u'User validates Title and Author on item page')
+def step_impl(context):
+    for row in context.table:
+        field_id = row['field']
+        value = row['value']
+
+        field_text = context.driver.find_element(By.ID, field_id)
+        actual_field_text = field_text.text
+        expected_field_text = value
+        assert actual_field_text == expected_field_text, f'Actual = "{actual_field_text}",' \
+                                                             f' Expected = "{expected_field_text}"'
+
+@then(u'User validates book description')
+def step_impl(context):
+    for row in context.table:
+        field_id = row['xpath']
+        value = row['text']
+
+        field_text = context.driver.find_element(By.XPATH, field_id)
+        actual_field_text = field_text.text
+        expected_field_text = value
+        assert actual_field_text == expected_field_text, f'Actual = "{actual_field_text}",' \
+                                                         f' Expected = "{expected_field_text}"'
+
+@then(u'User validates preface')
+def step_impl(context):
+    context.driver.find_element(By.XPATH, "//*[contains(text(), 'From the Preface')]")
+
+
