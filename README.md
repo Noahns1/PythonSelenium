@@ -52,4 +52,6 @@ These Scenarios are:
      - This scenario focuses on searching for an item, selecting it, adding it to the cart, and then validating its presence in the cart.
 3. Amazon - Incorrectly attempt to create an account
      - This scenario concentrates on negative testing by simulating errors that arise when incorrect input information is provided for creating an account.
+4. Amazon - Validate text on item
+     - This scenario's focus is on validating text on a specific item selected, such as it's Title, Author, Description and preface.
 
