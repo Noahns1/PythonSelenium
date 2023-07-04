@@ -42,7 +42,7 @@ I developed this project to showcase not only my proficiency in test case creati
 
 ---
 ### Scenarios
-In this project, I have implemented three scenarios that are identical to those in the twin project. The only difference is that they have been converted to Java.
+In this project, I have implemented four scenarios that are identical to those in the twin project. The only difference is that they have been converted to Java.
 
 These Scenarios are:
 
